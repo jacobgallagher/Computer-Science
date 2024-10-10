@@ -16,5 +16,6 @@ elif hurricane_speed < 130:
 elif hurricane_speed < 157:
     print("The hurricane is a category 4 hurricane.\n")
 
+
 elif hurricane_speed >= 157:
     print("The hurricane is a category 5 hurricane.\n")
