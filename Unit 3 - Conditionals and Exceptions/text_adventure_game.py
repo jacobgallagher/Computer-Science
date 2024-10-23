@@ -7,21 +7,21 @@ def one_v_one():
     time.sleep(2.5)
     print("Match Found\n")
     time.sleep(1)
-    print("Entering match in 3")
+    print("Entering match in 3...")
     time.sleep(1)
-    print("Entering match in 2")
+    print("Entering match in 2...")
     time.sleep(1)
-    print("Entering match in 1")
+    print("Entering match in 1...")
     time.sleep(1)
     print("Match Entered.\n")
     time.sleep(.5)
     print("You are playing against Megagamer768, first player to 3 goals wins!\n")
     time.sleep(3)
-    print("Kickoff in 3")
+    print("Kickoff in 3...\n")
     time.sleep(1)
-    print("Kickoff in 2")
+    print("Kickoff in 2...\n")
     time.sleep(1)
-    print("Kickoff in 1")
+    print("Kickoff in 1...\n")
 
 
     first_kickoff_selection_1 = input("What kickoff are you gonna use?\nA) Speed Flip Kickoff\nB)Delayed Kickoff\nC)Fake Kickoff\n").lower()
@@ -36,23 +36,22 @@ def one_v_one():
 def first_one_v_one_speed_kickoff():
     win_chance = random.random()
     if win_chance <= .4:
-        print("You won the kickoff And scored, the score is now 1-0.\n")
+        print("You won the kickoff And scored, the score is now 1-0!\n")
         time.sleep(3)
-        print("Kickoff in 3\n")
+        print("Kickoff in 3...\n")
         time.sleep(1)
-        print("Kickoff in 2\n")
+        print("Kickoff in 2...\n")
         time.sleep(1)
-        print("Kickoff in 1\n")
+        print("Kickoff in 1...\n")
         win_first_speed_kickoff_1()
-    else:
-        print("You lost the kickoff and your opponent scored, the score is now 0-1.\n")
-        print("You won the kickoff And scored, the score is now 1-0.\n")
+    elif win_chance > .4:
+        print("You lost the kickoff and your opponent scored, the score is now 0-1!\n")
         time.sleep(3)
-        print("Kickoff in 3\n")
+        print("Kickoff in 3...\n")
         time.sleep(1)
-        print("Kickoff in 2\n")
+        print("Kickoff in 2...\n")
         time.sleep(1)
-        print("Kickoff in 1\n")
+        print("Kickoff in 1...\n")
         lost_first_speed_kickoff_1()
 
 def lost_first_speed_kickoff_1():
@@ -162,4 +161,4 @@ def three_v_three():
     print("Matchmaking...  (Ranked 3v3 - Platinum 1 Division 4)")
 
 
-#r = random.randrange(0,10)
+#r = random.randrange(0,10) ozowski
