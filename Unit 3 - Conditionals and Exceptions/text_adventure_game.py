@@ -1,6 +1,9 @@
 import time
 import random
 
+score = 0
+opponent_score = 0
+
 def one_v_one():
        
     print("Matchmaking... (Ranked Duel - Diamond 1 Division 4)\n")
@@ -32,11 +35,14 @@ def one_v_one():
     if first_kickoff_selection_1 == "c":
         first_one_v_one_fake_kickoff()
 
+def third_kickoff():
+    print("Game Point!")
+    win_chance = input("")
 
 def first_one_v_one_speed_kickoff():
     win_chance = random.random()
     if win_chance <= .4:
-        print("You won the kickoff And scored, the score is now 1-0!\n")
+        print("You won the kickoff And scored, the score is now " + score + 1 + " - " + opponent_score + "\n")
         time.sleep(3)
         print("Kickoff in 3...\n")
         time.sleep(1)
@@ -79,12 +85,50 @@ def defend():
     if button_press == "x":
         win_chance = random.random()
         if win_chance <= .50:
-            print("You saved the ball and scored on Megagamer768's goal! The score is now 2-0.")
+            print("You saved the ball and scored on Megagamer768's goal! The score is now " + score + 1 + " - " + opponent_score + "\n")
         else:
-            print("You failed to defend. Megagamer768 scored on you and the score is now 1-1.")
+            print("You failed to defend. Megagamer768 scored on you and the score is now " + score + " - " + opponent_score + 1 + "\n")
+
+def shooting_ball():
+    input("Press X to shoot the ball!\n")
+    print("You scored the ball! The score is now 1-1")
+
+                       
+def defending():
+    button_press = input("Press X to defend.\n").lower()
+    if button_press == "x":
+        win_chance = random.random()
+        if win_chance <= .50:
+            print("You saved the ball!")
+            shooting_ball()
+        else:
+            print("You failed to defend. Megagamer768 scored on you and the score is now .")
+
+def double_touch():
+    win_chance  = random.random()
+    if win_chance <= .6:
+        print("You scored the double touch! The score is now ")
+    else:
+        x = input("You missed the double touch. Press X to go back to your goal and defend!").lower()
+        if x == "x":
+            defending()
+            
+        else:
+            print("Invalid input, try again.")
+            double_touch()
+
+def crossbar_decision():
+    choice = input("Would you like to\nA) Jump for the double touch\nB) Back off and defend.").lower()
+    if choice == "a":
+        double_touch()
+    if choice == "a":
+        defending()
+        print("Megagamer768 scored on you and the score is now ")
+
+            
 
 def offensive_kickoff():
-    selection = input("Would you like to \nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish Megagamer768.")
+    selection = input("Would you like to \nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish Megagamer768.\n").lower()
     if selection == "a":
         win_chance = random.random()
         if win_chance <= .8:
@@ -93,6 +137,9 @@ def offensive_kickoff():
             if win_chance <= .85:
                 print(username + "scored! The score is now 2-0.")
                 third_kickoff()
+            else:
+                print("You hit the ball off of the crossbar.")
+                crossbar_decision()
                 
             
         else:
