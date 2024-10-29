@@ -3,12 +3,17 @@ import random
 
 
 score = 0
-opponent_score = 0
+opp_score = 0
 
 
 def one_v_one():
-    
-    print("Matchmaking... (Ranked Duel - Diamond 1 Division 4)\n")
+
+
+    global opp_username
+    global username_random
+    username_random = ["newblancher678", "Megagamer678", "Hugecow345", "supernewb345", "jaymakethat_money", "8wayjohnathon1", "Xx_incredible_tv_xX", "d1i1d1d1y"]
+    opp_username = random.choice(username_random)
+    print("\nMatchmaking... (Ranked Duel - Diamond 1 Division 4)\n")
     time.sleep(2.5)
     print("Match Found\n")
     time.sleep(1)
@@ -20,319 +25,417 @@ def one_v_one():
     time.sleep(1)
     print("Match Entered.\n")
     time.sleep(.5)
-    print("You are playing against Megagamer768, first player to 3 goals wins!\n")
-    time.sleep(3)
+    print("You are playing against " + str(opp_username) + ", first player to 3 goals wins!\n")
+    kickoff()
+
+
+def kickoff():
+    global score
+    global opp_score
+    time.sleep(1.6)
     print("Kickoff in 3...\n")
     time.sleep(1)
     print("Kickoff in 2...\n")
     time.sleep(1)
     print("Kickoff in 1...\n")
-    kickoff()
-
-
-def kickoff():
-    kickoff_selection = input("What kickoff are you gonna use?\nA) Speed Flip Kickoff\nB)Delayed Kickoff\nC)Fake Kickoff\n").lower()
+    kickoff_selection = input("What kickoff are you gonna use?\n\nA) Speed Flip Kickoff\nB) Delayed Kickoff\nC) Fake Kickoff\n>").lower()
     if kickoff_selection == "a":
         kickoff_outcome_1()
-    if kickoff_selection == "b":
+    elif kickoff_selection == "b":
         kickoff_outcome_2()
-    if kickoff_selection == "c":
+    elif kickoff_selection == "c":
         kickoff_outcome_3()
-       
+    else:
+        print("Invalid input, try again.")
+        kickoff()
 
 
 def kickoff_outcome_1():
     win_chance = random.random()
-    if win_chance <= .4:
-        print("You won the kickoff And scored, the score is now " + score + 1 + " - " + opponent_score + "\n")
-        time.sleep(3)
-        print("Kickoff in 3...\n")
-        time.sleep(1)
-        print("Kickoff in 2...\n")
-        time.sleep(1)
-        print("Kickoff in 1...\n")
-        second_kickoff_1()
-    if win_chance  > .4 and win_chance <= .8:
-        print("You won the kickoff and the ball is on Megagamer768's side!")
+    if win_chance <= .25:
+        global score
+        global opp_score
+        score = (score + 1)
+        print("\nYou won the kickoff And scored, the score is now " + str(score) + " - " + str(opp_score) + "\n")
+    elif win_chance  > .25 and win_chance <= .75:
+        print("\nYou won the kickoff and the ball is on " + str(opp_username) + "'s side!\n")
         choose_to_shoot()
-    elif win_chance > .8:
-        print("You lost the kickoff and your opponent scored, the score is now " + score + + " - " + opponent_score + 1 + "\n")
-        time.sleep(3)
-        print("Kickoff in 3...\n")
-        time.sleep(1)
-        print("Kickoff in 2...\n")
-        time.sleep(1)
-        print("Kickoff in 1...\n")
-        second_kickoff_1()
-
-def choose_to_shoot():
-    choice = input("Would you like to\nA) Shoot the ball\nB) Play defensive and go back to your goal post")
-    if choice == "a":
-        shooting_ball()
-    if choice == "b":
-        defend_2()
     else:
-        print("Invalid input, try again.")
-        choose_to_shoot()
-
-
-
-
-
-    if selection == "a":
-        win_chance = random.random()
-        if win_chance <= .8:
-            print("You got to the ball first!")
-            win_chance = random.random()
-            if win_chance <= .85:
-                print(username + "scored! The score is now " + score + 1 + " - " + opponent_score + "\n")
-                third_kickoff()
-            else:
-                print("You hit the ball off of the crossbar.")
-                crossbar_decision()
-               
-           
-        else:
-            print("Megagamer768 got to the ball before you, the ball is now on your side. Defend.")
-            defend()
-def go_to_goal():
-    win_chance = random.random()
-    if win_chance <= .5:
-        print("You made it back to the goal!")
-        defend()
-    else: 
-        print("You didnt make it back in time. The score is now " + score + 1 + " - " + opponent_score + "\n")
-
-def press_f():
-    F = input("Press F to go to try to get to your goal and defend!").lower()
-    if F == "f":
-            go_to_goal()
-    else:
-        print("Invalid input, try again.")
-        press_f()
-
-def rush_ball():
-    win_chance = random.random()
-    if win_chance <= .3:
-        print("You didn't make it to the ball fast enough\n")
-        press_f()
-def boost_over_ball():
-    win_chance = random.random()
-    if win_
-def select_after_kickoff():
-    selection = input("You won the kickoff, would you like to \nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish Megagamer768.\n").lower()
-    if selection == "a":
-        rush_ball()
-    if selection == "b":
-        boost_over_ball()
-    if selection == "c":
-        demolish()
-    else:
-        print("Invalid input, try again.")
+        opp_score = (opp_score + 1)
+        print("\nYou lost the kickoff and " + str(opp_username) + " scored, the score is now " + str(score) + " - " + str(opp_score) + "\n")
 
 
 def kickoff_outcome_2():
     win_chance = random.random()
     if win_chance <= .7:
         select_after_kickoff()
-    if win_chance > .7:
-        print("You lost the kickoff, the ball is going towards your goal.")
+    elif win_chance > .7:
+        print("\nYou lost the kickoff, the ball is going towards your goal.\n")
         defend()
-        second_kickoff_1()
 
 
-def second_kickoff_1():
-    second_kickoff_selection_2 = input("What kickoff are you gonna use?\nA) Speed Flip Kickoff\nB)Delayed Kickoff\nC)Fake Kickoff").lower()
-    if second_kickoff_selection_2 == "a":
-        time.sleep(1)
-        win_chance = random.random()
-        if win_chance <= .7:
-            print("You won the kickoff!")
-            time.sleep(1)
-            offensive_kickoff()
-    if second_kickoff_selection_2 == "b":
-        print
-    if second_kickoff_selection_2 == "c":
-        print
+def kickoff_outcome_3():
+    global score
+    global opp_username
+    global opp_score
+    win_chance = random.random()
+    if win_chance <= .80:
+        print("\n" + str(opp_username) + " hit the ball towards you\n")
+        choose_to_shoot()
+    elif win_chance > .80 or win_chance <= .95:
+        print("\n" + str(opp_username) + " realized you faked, and is now dribbling towards your goal.\n")
+        defend()
+    elif win_chance > .95:
+        opp_score = (opp_score + 1)
+        print("\nYou didn't manage to defend when you faked the kickoff\n")
+        print("\n" + str(opp_username) + " scored on you, the score is now " + str(score) + " - " + str(opp_score) + "\n")
+
+
+def choose_to_shoot():
+    choice = input("\nWould you like to...\n\nA) Shoot the ball\nB) Play defensive and go back to your goal post\n>").lower()
+    if choice == "a":
+        shooting_ball()
+    elif choice == "b":
+        defend()
     else:
-        print("Invalid input, try again.")
-        second_kickoff_1()
+        print("\nInvalid input, try again.\n")
+        choose_to_shoot()
+
+
+def go_to_goal():
+    global score
+    global opp_score
+    win_chance = random.random()
+    if win_chance <= .5:
+        print("\nYou made it back to the goal!\n")
+        defend()
+    else:
+        score = (score + 1)
+        print("\nYou didnt make it back in time. The score is now " +str(score) + " - " + str(opp_score) + "\n")
+
+
+def press_f():
+    F = input("\nPress F to go to go to your goal and defend!\n>").lower()
+    if F == "f":
+            go_to_goal()
+    else:
+        print("\nInvalid input, try again.\n")
+        press_f()
+
+
+def rush_ball():
+    global opp_username
+    win_chance = random.random()
+    if win_chance <= .3:
+        print("\nYou didn't make it to the ball fast enough\n")
+        press_f()
+    elif win_chance > .3:
+        print("\nYou made it to the ball before " + str(opp_username) + "\n")
+        shooting_ball()
+
+
+def won_boost_over_ball():
+    selection = input("\nYou got the boost, would you like to...\n\nA) Shoot the ball\nB) Dribble the ball\n>").lower()
+    if selection == "a":
+        shooting_ball()
+    elif selection == "b":
+        dribble_ball()
+
+
+def boost_over_ball():
+    global opp_username
+    win_chance = random.random()
+    if win_chance <= .3:
+        won_boost_over_ball()
+    elif win_chance > .3:
+        print("\nYou took too long getting boost, " + str(opp_username) + " hit the ball towards your goal, defend!\n")
+        defend()
+
+
+def demolish():
+    global opp_username
+    win_chance = random.random()
+    if win_chance <= .45:
+        print("\nYou demolished " + str(opp_username) + "\n")
+        choose_to_shoot()
+    elif win_chance > .45 or win_chance <= .85:
+        print("\nYou didn't manage to demolish " + str(opp_username) + ", and your opponent is now going towards your goal, defend!\n")
+        defend()
+    else:
+        print("You bumped " + opp_username + ", shoot!\n")
+        shooting_ball()
+
+
+def select_after_kickoff():
+    selection = input("\nYou won the kickoff, would you like to...\n\nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish " + opp_username + ".\n>").lower()
+    if selection == "a":
+        rush_ball()
+    elif selection == "b":
+        boost_over_ball()
+    elif selection == "c":
+        demolish()
+    else:
+        print("\nInvalid input, try again.\n")
+
+
+def musty_flick():
+    global score
+    global opp_score
+    win_chance = random.random()
+    if win_chance <= .75:
+        score = (score + 1)
+        print("\nYou scored the musty flick! the score is now " + str(score) + " - " + str(opp_score) + "\n")
+    elif win_chance > .75:
+        print("\nYou hit the crossbar!\n")
+        crossbar_decision()
+
+
+def breezy_flick():
+    global score
+    global opp_score
+    win_chance = random.random()
+    if win_chance <= .4:
+        score = (score + 1)
+        print("\nYou scored the breezy flick! the score is now " + str(score) + " - " + str(opp_score) + "\n")
+    elif win_chance > .4:
+        print("\nYou did the breezy flick , but you hit the crossbar\n")
+        crossbar_decision()
+
+
+def flick_selection():
+    selection = input("\nWould you like to...\n\nA) Musty flick\nB) Breezy flick\n>").lower()
+    if selection == "a":
+        musty_flick()
+    elif selection == "b":
+        breezy_flick()
+    elif selection != "a" or selection != "b":
+        print("\nInvalid input, try again.\n")
+        flick_selection()
+
+
+def dribble_ball():
+    global score
+    global opp_score
+    global opp_username
+    win_chance = random.random()
+    if win_chance <= .9:
+        print("\nYou are dribbling towards Megagamer678's goal!\n")
+        flick_selection()
+    elif win_chance > .9:
+        opp_score = (opp_score + 1)
+        print("\n" + str(opp_username) + " got to the ball and scored before you could dribble, the score is now " + str(score) + " - " + str(opp_score) + "\n")
+
+
+def choose_offense():
+    choice = input("\nDo you want to...\n\nA) Shoot the ball\nB) Dribble the ball to the goal\n>").lower()
+    if choice == "a":
+        shooting_ball()
+    elif choice == "b":
+        dribble_ball()
+    elif choice != "a" or choice != "b":
+        print("\nInvalid input, try again\n")
+        choose_offense()
 
 
 def defend():
-    button_press = input("Press X to defend.\n").lower()
+    global score
+    global opp_username
+    global opp_score
+    button_press = input("\nPress X to defend.\n>").lower()
     if button_press == "x":
         win_chance = random.random()
         if win_chance <= .50:
-            print("You saved the ball and scored on Megagamer768's goal! The score is now " + score + 1 + " - " + opponent_score + "\n")
+            score = (score + 1)
+            print("\nYou saved the ball and scored on " + str(opp_username) + "'s goal! The score is now " + str(score) + " - " + str(opp_score) + "\n")
         else:
-            print("You failed to defend. Megagamer768 scored on you and the score is now " + score + " - " + opponent_score + 1 + "\n")
-
-def defend_2():
-    button_press = input("Press X to defend.\n").lower()
-    if button_press == "x":
-        win_chance = random.random()
-        if win_chance <= .50:
-            print("Megagamer768 hit the ball towards you. You managed to defend!")
-            shooting_ball()
-        else:
-            print("You failed to defend. Megagamer768 scored on you and the score is now " + score + " - " + opponent_score + 1 + "\n")
-
-def shooting_ball():
-    input("Press X to shoot the ball!\n")
-    score_chance = random.random()
-    if score_chance <= .7:
-        print("You scored! The score is now " + score + 1 + " - " + opponent_score + "\n")
-    else:
-        print("You missed the shot.\n")
-        a_to_defend()
-
-
-
-def a_to_defend():
-    press = input("Press A to go back and defend!").lower()
-    if press == "a":
+            opp_score = (opp_score + 1)
+            print("\nYou failed to defend. " + str(opp_username) + " scored on you and the score is now " + str(score) + " - " + str(opp_score) + "\n")
+    elif button_press != "x":
+        print("\nInvalid input, try again\n")
         defend()
-    else:
-        print("Invalid input, try again.")
-        a_to_defend()
+
 
 def defending_shot():
-    button_press = input("Press X to defend.\n").lower()
+    global opp_username
+    global score
+    global opp_score
+    button_press = input("\nPress X to defend.\n>").lower()
     if button_press == "x":
         win_chance = random.random()
         if win_chance <= .50:
-            print("You saved the ball!")
+            print("\nYou saved the ball!\n")
             shooting_ball()
         else:
-            print("You failed to defend. Megagamer768 scored on you and the score is now .")
+            opp_score = (opp_score + 1)
+            print("\nYou failed to defend. " + str(opp_username) + " scored on you and the score is now ." + str(score) + " - " + str(opp_score) + "\n")
+    elif button_press != "x":
+        print("\nInvalid input, try again\n")
+        defending_shot()
+
+
+def shooting_ball():
+    global score
+    global opp_score
+    input("\nPress X to shoot the ball!\n>")
+    score_chance = random.random()
+    if score_chance <= .7:
+        score = (score + 1)
+        print("\nYou scored! The score is now " + str(score) + " - " + str(opp_score) + "\n")
+    else:
+        print("\nYou missed the shot.\n")
+        defend()
+
+
+def press_x():
+    x = input("\nYou missed the double touch. Press X to go back to your goal and defend!\n>").lower()
+    if x == "x":
+        defend()
+    else:
+        print("\nInvalid input, try again.\n")
+        press_x()
 
 
 def double_touch():
+    global score
+    global opp_score
     win_chance  = random.random()
     if win_chance <= .6:
-        print("You scored the double touch! The score is now ")
+        score = (score + 1)
+        print("\nYou scored the double touch! The score is now " + str(score) + " - " + str(opp_score) + "\n")
     else:
-        x = input("You missed the double touch. Press X to go back to your goal and defend!").lower()
-        if x == "x":
-            defending()
-           
-        else:
-            print("Invalid input, try again.")
-            double_touch()
+        press_x()
 
 
 def crossbar_decision():
-    choice = input("Would you like to\nA) Jump for the double touch\nB) Back off and defend.").lower()
+    choice = input("\nWould you like to\n\nA) Jump for the double touch\nB) Back off and defend.\n>").lower()
     if choice == "a":
         double_touch()
-    if choice == "a":
-        defending()
-        print("Megagamer768 scored on you and the score is now ")
+    elif choice == "b":
+        defend()
 
 
-           
+def rush_ball():
+    global score
+    global opp_score
+    global opp_username
+    win_chance = random.random()
+    if win_chance <= .8:
+        print("\nYou got to the ball first!\n")
+        win_chance = random.random()
+        if win_chance <= .85:
+            score = (score + 1)
+            print(username + " scored! The score is now " + str(score) + " - " + str(opp_score) + "\n")
+        else:
+            print("\nYou hit the ball off of the crossbar.\n")
+            crossbar_decision()
+    elif win_chance > .8:
+        print("\n" + str(opp_username) + " got to the ball first, go defend!\n")
+        defend()
 
 
 def offensive_kickoff():
-    selection = input("Would you like to \nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish Megagamer768.\n").lower()
+    global opp_username
+    selection = input("\nWould you like to...\n\nA) Rush the ball without boost. \nB) Go to boost instead of the ball. \nC) Try to demolish Megagamer768.\n>").lower()
     if selection == "a":
-        win_chance = random.random()
-        if win_chance <= .8:
-            print("You got to the ball first!")
-            win_chance = random.random()
-            if win_chance <= .85:
-                print(username + "scored! The score is now 2-0.")
-                third_kickoff()
-            else:
-                print("You hit the ball off of the crossbar.")
-                crossbar_decision()
-               
-           
-        else:
-            print("Megagamer768 got to the ball before you, the ball is now on your side. Defend.")
-            defend()
+        rush_ball()
+    elif selection == "b":
+        print("\n" + str(opp_username) + " got to the ball before you, the ball is now on your side. Defend.\n")
+        defend()
 
 
+def game_welcome():
+    print("\nWelcome To Rocket League!")
+    global gamemode_selection
+    gamemode_selection = input("\nWould You Like To Play 1v1?\nA) Play 1v1\nB) Dont play Rocket League\n>").lower()
+    if gamemode_selection == "a":
+        one_v_one()
+    elif gamemode_selection == "b":
+        print("You have no choice, press a")
+        game_welcome()
+    elif gamemode_selection != "a" or gamemode_selection != "b":
+        print("\nInvalid choice, try again.\n")
+        game_welcome()
 
 
+def left_match():
+    print("\n\nGood game! rate my game good plz i tried really hard")
 
 
+def quick_chats():
+    choice = input("\nPost game quick chats:\n\nA) Well Played.\nB) GG.\nC) That was fun!\nD) Proceed without chatting\n>").lower()
+    if choice == "a":
+        print("\n" + username + ": Well played\n")
+        time.sleep(1.5)
+        print(opp_username + ": GG.\n")
+        time.sleep(1.5)
+        input("\nPress any button to leave the match.\n")
+        left_match()
+    elif choice == "b":
+        print("\n" + username + ": GG.\n")
+        time.sleep(2.5)
+        print(opp_username + ": This is Rocket League!\n")
+        time.sleep(1)
+        input("\nPress any button to leave the match.\n")
+        left_match()
+    elif choice == "c":
+        print("\n" + username + ": That was fun!\n")
+        time.sleep(3)
+        print("Server: " +  opp_username + " left the match.\n")
+        time.sleep(1)
+        input("\nPress any button to leave the match.\n")
+        left_match()
+    elif choice == "d":
+        left_match()
+    elif choice != "a" or choice != "b" or choice != "c" or choice != "d":
+        print("\nInvalid input, try again.\n")
+        quick_chats()
 
 
-def first_one_v_one_delayed_kickoff():
-    win_first_kickoff_chance_1 = random.random()
-    if win_first_kickoff_chance_1 <= .35:
-        print("You won the kickoff And scored, the score is now 1-0.\n")
-        win_first_speed_kickoff_1()
-    else:
-        print("You lost the kickoff and your opponent scored, the score is now 0-1.\n")
-        lost_first_speed_kickoff_1()
-
-
-
-
-def first_one_v_one_fake_kickoff():
-    win_speed_kickoff_chance = random.random()
-    if win_speed_kickoff_chance <= .8:
-        print("You won the kickoff And scored, the score is now 1-0.\n")
-        win_first_speed_kickoff_1()
-    else:
-        print("You lost the kickoff and your opponent scored, the score is now 0-1.\n")
-        lost_first_speed_kickoff_1()
+def game_results():
+    global score
+    global opp_score
+    global opp_username
+    score = int(score)
+    if score == 3:
+        print("You won " + str(score) + " - " + str(opp_score) + " against " + str(opp_username) + "!")
+        time.sleep(2)
+        quick_chats()
+    elif score != 3:
+        print("Unfortunately, you have lost " + str(score) + " - " + str(opp_score) + " against " + str(opp_username) + ".")
+        time.sleep(2)
+        quick_chats()
 
 
 username = input("What is your username?\n>")
 time.sleep(1)
-input("Press any button to continue.\n")
 
 
-def game_welcome():
-    print("Welcome To Rocket League!")
-    gamemode_selection = input("Would You Like To \nA) Play 1s \nB) Play 2s \nC) Play 3s\n").lower()
-    if gamemode_selection == "a":
-        one_v_one()
-    if gamemode_selection == "b":
-        two_v_two
-    if gamemode_selection == "c":
-        three_v_three
+def button():
+    any = input("\nPress any button to continue.\n")
+    if any == "":
+        print("Please press a button, then enter.")
+        button()
     else:
-        print("Invalid choice, try again.")
         game_welcome()
 
 
-game_welcome()
-
-
-def won_first_speed_kickoff_1():
+button()
 
 
 
 
-    print("Kickoff in 3\n")
-    time.sleep(1)
-    print("Kickoff in 2\n")
-    time.sleep(1)
-    print("Kickoff in 1\n")
-    second_kickoff_selection_1 = input("What kickoff are you gonna use?\nA) Speed Flip Kickoff\nB)Delayed Kickoff\nC)Fake Kickoff").lower()
-    if second_kickoff_selection_1 == "a":
-        print("")
+def check_game_over():
+    global score
+    global opp_score
+    if score < 3 and opp_score < 3:
+        kickoff()
+        check_game_over()
+    else:
+        game_results()
 
 
+check_game_over()
 
 
-def two_v_two():
-    print("Matchmaking... (Ranked 2v2 - Champion 2 Division 3)")
-
-
-
-
-def three_v_three():
-    print("Matchmaking...  (Ranked 3v3 - Platinum 1 Division 4)")
-
-
-
-
-#r = random.randrange(0,10) ozowski
 
 
